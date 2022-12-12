@@ -3,4 +3,5 @@ plotly
 matplotlib
 seaborn
 statsmodels
-scipy  
+scipy
+sklearn

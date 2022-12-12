@@ -80,9 +80,9 @@ physiological_measurements = st.selectbox(
     ('CPK','Ejection fraction','Level of platelets', 'Level of creatinine', 'Level of sodium'),   
     )
 
-distribution_physiological_measurements = px.histogram(df, physiological_measurements, color='Sex', barmode='group', histnorm ='percent', title= 'Distribution of '+physiological_measurements+' among the patients grouped by sex', text_auto = TRUE)
+distribution_physiological_measurements = px.histogram(df, physiological_measurements, color='Sex', barmode='group', histnorm ='percent', title= 'Distribution of '+physiological_measurements+' among the patients grouped by sex', text_auto = True)
 #distribution_physiological_measurements2 = px.histogram(df, x= 'Dead', y= physiological_measurements, color='Dead', histfunc = 'avg', title= 'Distribution of '+physiological_measurements+' among the patients grouped by a death event', color_discrete_sequence=px.colors.qualitative.T10)
-distribution_physiological_measurements3 = px.box(df, x= 'Dead', y= physiological_measurements, color ='Sex', title= 'Comparison of '+physiological_measurements+' among the dead and alive patients', text_auto = TRUE)
+distribution_physiological_measurements3 = px.box(df, x= 'Dead', y= physiological_measurements, color ='Sex', title= 'Comparison of '+physiological_measurements+' among the dead and alive patients', text_auto = True)
 
 
 
@@ -137,9 +137,9 @@ cause = st.selectbox(
     ('Age','Anaemia','Diabetes', 'High blood pressure', 'Smoking')
     )
 
-cause_distribution = px.histogram(df, cause, color='Sex', barmode='group', barnorm = 'fraction', title= 'Density of '+cause+' among the patients', text_auto = TRUE)
+cause_distribution = px.histogram(df, cause, color='Sex', barmode='group', barnorm = 'fraction', title= 'Density of '+cause+' among the patients', text_auto = True)
 cause_distribution.update_xaxes(type='category')
-cause_distribution2 = px.histogram(df, x='Dead', color= cause, barnorm = 'fraction', barmode='relative', title= 'Percentage of '+cause+' disease among the alive and dead patients', color_discrete_sequence=px.colors.qualitative.T10, text_auto = TRUE)
+cause_distribution2 = px.histogram(df, x='Dead', color= cause, barnorm = 'fraction', barmode='relative', title= 'Percentage of '+cause+' disease among the alive and dead patients', color_discrete_sequence=px.colors.qualitative.T10, text_auto = True)
 cause_distribution2.update_xaxes(type='category')
 st.plotly_chart(cause_distribution)
 st.plotly_chart(cause_distribution2)
@@ -176,7 +176,7 @@ comorbidity = st.selectbox(
     ('Age','Anaemia','Diabetes', 'High blood pressure', 'Smoking')
     )
 
-histogram_comorbidity = px.histogram(df,x=comorbidity, color='Dead',barmode='group', title = 'Distribution of the morbidity in function of '+comorbidity, text_auto = TRUE)
+histogram_comorbidity = px.histogram(df,x=comorbidity, color='Dead',barmode='group', title = 'Distribution of the morbidity in function of '+comorbidity, text_auto = True)
 st.plotly_chart(histogram_comorbidity)
 
 #cause_distribution = px.histogram(df,cause, color='Sex', barmode='group', histnorm='percent', title= 'Distribution of '+cause+' among the patients')
@@ -280,7 +280,7 @@ new_df = pd.DataFrame({'Age':age,
 
 
 ####### MODEL PROBIT #########
-df = pd.read_csv('/Users/jan-philippkretschmann/Python_Local/DataSciencePython/heart_failure.csv', sep=',')
+df = pd.read_csv(url, sep=',')
 df = pd.DataFrame(df)
 
 df_X = df.drop(['DEATH_EVENT','time'],axis=1)

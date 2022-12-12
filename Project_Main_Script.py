@@ -5,8 +5,8 @@ Created on Sun Nov 27 10:45:39 2022
 @author: gaspb
 """
 
-conda install plotly
 
+import plotly
 import streamlit as st
 import pandas as pd
 import plotly.express as px

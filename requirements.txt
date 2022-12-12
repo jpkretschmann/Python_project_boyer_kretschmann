@@ -4,4 +4,4 @@ matplotlib
 seaborn
 statsmodels
 scipy
-sklearn
+scikit-learn

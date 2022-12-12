@@ -25,7 +25,8 @@ plt.rc("font", size=14)
 #/Users/jan-philippkretschmann/Python_Local/DataSciencePython/
 # streamlit run "C:\Users\gaspb\Downloads\Master 2 QE\Python coding\Project_Python\Coding\Project_Main_Script.py"
 # Renaming our variable to make it clearer : 
-df = pd.read_csv('/Users/jan-philippkretschmann/Python_Local/DataSciencePython/heart_failure.csv', sep=',')
+url = "https://raw.githubusercontent.com/jpkretschmann/Python_project_boyer_kretscmann/main/heart_failure.csv"
+df = pd.read_csv(url, sep=',')
 df = df.rename(columns = {'age':'Age',
                           'anaemia':'Anaemia',
                           'creatinine_phosphokinase':'CPK',

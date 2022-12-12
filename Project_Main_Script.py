@@ -82,7 +82,7 @@ physiological_measurements = st.selectbox(
 
 distribution_physiological_measurements = px.histogram(df, physiological_measurements, color='Sex', barmode='group', histnorm ='percent', title= 'Distribution of '+physiological_measurements+' among the patients grouped by sex', text_auto = True)
 #distribution_physiological_measurements2 = px.histogram(df, x= 'Dead', y= physiological_measurements, color='Dead', histfunc = 'avg', title= 'Distribution of '+physiological_measurements+' among the patients grouped by a death event', color_discrete_sequence=px.colors.qualitative.T10)
-distribution_physiological_measurements3 = px.box(df, x= 'Dead', y= physiological_measurements, color ='Sex', title= 'Comparison of '+physiological_measurements+' among the dead and alive patients', text_auto = True)
+distribution_physiological_measurements3 = px.box(df, x= 'Dead', y= physiological_measurements, color ='Sex', title= 'Comparison of '+physiological_measurements+' among the dead and alive patients')
 
 
 

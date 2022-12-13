@@ -140,7 +140,7 @@ if cause == 'Age':
   cause_distribution = px.histogram(df,x=cause, color='Dead',barmode='group', title = 'Distribution of the morbidity in function of '+cause)
   st.plotly_chart(cause_distribution)
 else:
-  cause_distribution = px.histogram(df, cause, color='Sex', barmode='group', barnorm = 'fraction', title= 'Density of '+cause+' among the patients')
+  cause_distribution = px.histogram(df, cause, barmode='group', barnorm = 'fraction', title= 'Density of '+cause+' among the patients')
   cause_distribution.update_xaxes(type='category')
   cause_distribution2 = px.histogram(df, x='Dead', color= cause, barnorm = 'fraction', barmode='relative', title= 'Percentage of '+cause+' disease among the alive and dead patients', color_discrete_sequence=px.colors.qualitative.T10, text_auto = True)
   cause_distribution2.update_xaxes(type='category')

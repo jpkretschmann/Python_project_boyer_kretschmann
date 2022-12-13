@@ -199,7 +199,8 @@ comorbidity = st.selectbox(
 #histogram_comorbidity = px.histogram(df,x=comorbidity, color='Dead',barmode='group', title = 'Distribution of the morbidity in function of '+comorbidity)
 
 if comorbidity == 'Age':
-  histogram_comorbidity = px.histogram(df,x=comorbidity, color='Dead', histnorm = 'fraction', barmode='group', title = 'Distribution of the morbidity in function of '+cause)
+  histogram_comorbidity = px.histogram(df,x=comorbidity, color='Dead', barnorm = 'fraction', barmode='relative', title = 'Distribution of the morbidity in function of '+cause)
+  histogram_comorbidity.update_xaxes(type='category')
   st.plotly_chart(histogram_comorbidity)
 else:
  histogram_comorbidity = px.histogram(df, x=comorbidity, color= 'Dead', barnorm = 'fraction', barmode='relative', title = 'Distribution of the morbidity in function of '+comorbidity , color_discrete_sequence=px.colors.qualitative.T10, text_auto = True)

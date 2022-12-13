@@ -137,7 +137,7 @@ cause = st.selectbox(
     )
 
 if cause == 'Age':
-  cause_distribution = px.histogram(df,cause, color='Sex', barmode='group', histnorm='percent')
+  cause_distribution = px.histogram(df,y= dead, x=cause, color='Sex', barmode='group', histnorm='percent')
   cause_distribution.update_xaxes(type='category')
   st.plotly_chart(cause_distribution)
 else:

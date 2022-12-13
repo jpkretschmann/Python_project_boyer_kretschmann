@@ -139,7 +139,7 @@ cause = st.selectbox(
 if cause == 'Age':
   cause_distribution = px.histogram(df,cause, color='Sex', barmode='group', histnorm='percent')
   cause_distribution.update_xaxes(type='category')
-else
+else:
   cause_distribution = px.histogram(df, cause, color='Sex', barmode='group', barnorm = 'fraction', title= 'Density of '+cause+' among the patients')
   cause_distribution.update_xaxes(type='category')
   cause_distribution2 = px.histogram(df, x='Dead', color= cause, barnorm = 'fraction', barmode='relative', title= 'Percentage of '+cause+' disease among the alive and dead patients', color_discrete_sequence=px.colors.qualitative.T10, text_auto = True)

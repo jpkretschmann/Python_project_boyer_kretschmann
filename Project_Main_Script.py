@@ -5,7 +5,7 @@ Created on Sun Nov 27 10:45:39 2022
 @author: gaspb jpk
 """
 
-
+import pandas as pd
 import plotly
 import plotly.express as px
 import matplotlib.pyplot as plt 

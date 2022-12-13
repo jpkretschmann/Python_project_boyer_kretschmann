@@ -136,12 +136,31 @@ cause = st.selectbox(
     ('Age','Anaemia','Diabetes', 'High blood pressure', 'Smoking')
     )
 
-cause_distribution = px.histogram(df, cause, color='Sex', barmode='group', barnorm = 'fraction', title= 'Density of '+cause+' among the patients')
-cause_distribution.update_xaxes(type='category')
-cause_distribution2 = px.histogram(df, x='Dead', color= cause, barnorm = 'fraction', barmode='relative', title= 'Percentage of '+cause+' disease among the alive and dead patients', color_discrete_sequence=px.colors.qualitative.T10, text_auto = True)
-cause_distribution2.update_xaxes(type='category')
+if cause == 'Age':
+  cause_distribution = px.histogram(df,cause, color='Sex', barmode='group', histnorm='percent')
+  cause_distribution.update_xaxes(type='category')
+else
+  cause_distribution = px.histogram(df, cause, color='Sex', barmode='group', barnorm = 'fraction', title= 'Density of '+cause+' among the patients')
+  cause_distribution.update_xaxes(type='category')
+  cause_distribution2 = px.histogram(df, x='Dead', color= cause, barnorm = 'fraction', barmode='relative', title= 'Percentage of '+cause+' disease among the alive and dead patients', color_discrete_sequence=px.colors.qualitative.T10, text_auto = True)
+  cause_distribution2.update_xaxes(type='category')
+  
+  
 st.plotly_chart(cause_distribution)
 st.plotly_chart(cause_distribution2)
+
+
+
+#st.plotly_chart(cause_distribution)
+#st.plotly_chart(cause_distribution2)
+#cause_distribution = px.histogram(df,cause, color='Sex', barmode='group', histnorm='percent')
+
+#cause_distribution = px.histogram(df, cause, color='Sex', barmode='group', barnorm = 'fraction', title= 'Density of '+cause+' among the patients')
+#cause_distribution.update_xaxes(type='category')
+#cause_distribution2 = px.histogram(df, x='Dead', color= cause, barnorm = 'fraction', barmode='relative', title= 'Percentage of '+cause+' disease among the alive and dead patients', color_discrete_sequence=px.colors.qualitative.T10, text_auto = True)
+#cause_distribution2.update_xaxes(type='category')
+#st.plotly_chart(cause_distribution)
+#st.plotly_chart(cause_distribution2)
 
 with st.expander('A little explanation ?'):
         if (cause=='Age'):

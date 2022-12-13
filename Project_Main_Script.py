@@ -193,13 +193,13 @@ st.write('As we said, heart failure can sometimes be the source of death of some
 
 comorbidity = st.selectbox(
     'Wish comorbidity would you like to investigate ? ',
-    ('Age','Anaemia','Diabetes', 'High blood pressure', 'Smoking')
+    ('Anaemia','Diabetes', 'High blood pressure', 'Smoking')
     )
 
 #histogram_comorbidity = px.histogram(df,x=comorbidity, color='Dead',barmode='group', title = 'Distribution of the morbidity in function of '+comorbidity)
 
 histogram_comorbidity = px.histogram(df, x=comorbidity, color= 'Dead', barnorm = 'fraction', barmode='relative', title = 'Distribution of the morbidity in function of '+comorbidity , color_discrete_sequence=px.colors.qualitative.T10, text_auto = True)
-#histogram_comorbidity.update_xaxes(type='category')
+histogram_comorbidity.update_xaxes(type='category')
 st.plotly_chart(histogram_comorbidity)
 #cause_distribution = px.histogram(df,cause, color='Sex', barmode='group', histnorm='percent', title= 'Distribution of '+cause+' among the patients')
 

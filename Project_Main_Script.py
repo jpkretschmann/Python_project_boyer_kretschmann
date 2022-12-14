@@ -10,6 +10,7 @@ Created on Sun Nov 27 10:45:39 2022
 
 import streamlit as st
 import pandas as pd
+import numpy as np
 import plotly
 import plotly.express as px
 import matplotlib.pyplot as plt 

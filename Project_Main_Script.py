@@ -73,7 +73,7 @@ median_survival_day_women = women_df[women_df['Dead']==0]['Number of day survied
 st.write('In 2001 in France, the number of people with heart failure was 500,000, with 120,000 new cases each year.  Heart failure is responsible for more than 32,000 deaths per year. Properly managed, this disease does not lead directly to death. Indeed, on a sample of about 300 people, we estimate a survival rate of survival for both men and woman of', men_survival_rate,'%. Moreover, we note that for the deceased, the median number of days of survival after diagnosis is', median_survival_day_men, 'days for men and for women ', median_survival_day_women, ' days.' )
 
 
-st.subheader('What are the indicator ?')
+st.subheader('What are the indicators ?')
 st.write('Thus, it is essential to detect it as soon as possible.' 
 'To do this, doctors and other health specialists base their work on a number of physiological measurements. Among these we count : ')
 
@@ -93,7 +93,7 @@ st.plotly_chart(distribution_physiological_measurements)
 st.plotly_chart(distribution_physiological_measurements3)
 
 
-with st.expander('A little explanation ?'):
+with st.expander('Interested in a more detailed explanation ?'):
     if (physiological_measurements=='CPK'):
         st.write(' CPK or Creatine PhosphoKinase is an important protein in energy metabolism.'
                  ' Its role is to replenish ATP (adenosine triphosphate) reserves, which can be used by the cell for its respiration and energy. Its determination is of interest in the diagnosis of myocardial infarction (increase in the MB fraction), muscle damage (increase in the MM fraction) and meningeal damage.')
@@ -130,7 +130,7 @@ with st.expander('A little explanation ?'):
 
 st.subheader('The different causes')
 
-st.write('As we have said heart failure is the inability of the heart to pump blood through the rest of the body.')
+st.write('As already stated, heart failure is the inability of the heart to pump blood through the rest of the body. Remember that heart disease is just the diminished ability of the heart to pump blood through the system efficiently.')
 
 st.write('This abnormality can be caused by a number of causes.  In this part we try to detail them. ')
 
@@ -164,7 +164,7 @@ else:
 #st.plotly_chart(cause_distribution)
 #st.plotly_chart(cause_distribution2)
 
-with st.expander('A little explanation ?'):
+with st.expander('Interested in a more detailed explanation ?'):
         if (cause=='Age'):
             st.write('With age, the body tends to deteriorate. This decrepitude extends in particular to the cardiac muscle which tends to weaken. And thus to be less able to fulfill its functions.')
             st.write('Even if, it is the incentive greatly. The age does not automatically imply a cardiac insufficiency. Thus, it cannot be associated with a particular type of heart failure.')
@@ -187,7 +187,7 @@ with st.expander('A little explanation ?'):
 
 
 st.header('Heart faillure in relation')
-st.subheader('What are the impact of comorbidity on death ?')
+st.subheader('What is the relation of this comorbidity on death ?')
 
 st.write('As we said, heart failure can sometimes be the source of death of some patients. In most cases, the deceased were suffering, in addition to heart failure, other diseases reinforcing the consequences of the first. We talk about comorbidities.')
 
@@ -227,7 +227,7 @@ marge_effect_comorbidity = res.get_margeff(at='mean', method='dydx')
 
 
 
-with st.expander('Whant to better understand the causality between this two variables ?'): 
+with st.expander('Want to dig deeper into the causality between these two variables ?'): 
     st.write(marge_effect_comorbidity.summary())
     
     if (comorbidity=='Age'):

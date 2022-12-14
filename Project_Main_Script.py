@@ -144,9 +144,9 @@ if cause == 'Age':
   cause_distribution = px.histogram(df,x=cause, color='Dead',barmode='group', title = 'Distribution of the morbidity in function of '+cause)
   st.plotly_chart(cause_distribution)
 else:
-  cause_distribution = px.histogram(df, cause, histnorm = 'percent', title= 'Density of '+cause+' among the patients', text_auto = True)
+  cause_distribution = px.histogram(df, cause, color ='Sex', barmode='group', histnorm = 'percent', title= 'Density of '+cause+' among the patients', text_auto = True)
   cause_distribution.update_xaxes(type='category')
-  cause_distribution3 = px.histogram(df, x='Age', y= cause, color= 'Sex', barnorm = 'fraction', barmode='group', title= 'Distribution of '+cause+' disease among age groups by sex', text_auto = True)
+  cause_distribution3 = px.histogram(df, x='Age', y= cause , barnorm = 'fraction', barmode='group', title= 'Distribution of '+cause+' disease among age groups by sex', text_auto = True)
   
   st.plotly_chart(cause_distribution)
   st.plotly_chart(cause_distribution3)  
@@ -383,7 +383,7 @@ X_train, X_test, Y_train, Y_test = train_test_split(df_X, df_Y,
                                                       random_state=0)
 
 
-probit_model=sm.Probit(Y_train,X_train)
+probit_model=smf.probit(Y_train,X_train)
 result_full=probit_model.fit()
 
 params = pd.DataFrame(probit_model.fit().params,)

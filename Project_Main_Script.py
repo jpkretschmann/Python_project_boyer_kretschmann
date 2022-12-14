@@ -405,7 +405,6 @@ result1["actual"] = Y_test
 confusion_matrix = confusion_matrix(Y_test, y_pred)
 
 
-
 y_pred_proba = np.array(df23['y_pred_proba'])
 probit_roc_auc = roc_auc_score(Y_test, y_pred)
 fpr, tpr, thresholds = roc_curve(Y_test, y_pred_proba)
@@ -419,6 +418,7 @@ plt.ylabel('True Positive Rate')
 plt.title('Receiver operating characteristic')
 plt.legend(loc="lower right")
 plt.savefig('Probit_ROC')
+
 
 
 

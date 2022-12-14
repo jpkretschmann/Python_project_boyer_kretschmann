@@ -406,6 +406,20 @@ confusion_matrix = confusion_matrix(Y_test, y_pred)
 
 
 
+y_pred_proba = np.array(df23['y_pred_proba'])
+probit_roc_auc = roc_auc_score(Y_test, y_pred)
+fpr, tpr, thresholds = roc_curve(Y_test, y_pred_proba)
+plt.figure()
+plt.plot(fpr, tpr, label='Probit Model (area = %0.2f)' % probit_roc_auc)
+plt.plot([0, 1], [0, 1],'r--')
+plt.xlim([0.0, 1.0])
+plt.ylim([0.0, 1.05])
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+plt.title('Receiver operating characteristic')
+plt.legend(loc="lower right")
+plt.savefig('Probit_ROC')
+
 
 
 
@@ -421,8 +435,8 @@ with st.expander('Do you want to see behind the scenes of this prediction ? Watc
     st.write('Of course we weighted against a logit or a classical machine learning process by evaluating the accuracy of the model. Yet, this is not trivial as we obtain a percentage, not a definied classification whether the patient is going to die or not given the inputs. Therefore it is necessary to define a rule of decision i.e. a probability threshold above which a patient in our sample is given a dead or alive decision. We decided to set that threshold arbitrarily to 45%. If a patient has a probability of over 45% to die, the model will predict that the patient will definetely die')
     st.write('This is of course subject of discussion if that threshold is properly choosen, yet experimentation showed that this threshold yield the best accuracy')
     st.write('Herby we display some metrics to evaluate our model:')
-    st.write(print(result_full.summary()))
-    st.write(print('Accuracy of the Probit Model on test set: {:.2f}'.format(accuracy_score(Y_test, y_pred))))
-    st.write(print(confusion_matrix))
-    st.write(print(classification_report(Y_test, y_pred)))
+    st.write(result_full.summary())
+    st.write('Accuracy of the Probit Model on test set: {:.2f}'.format(accuracy_score(Y_test, y_pred)))
+    st.write(confusion_matrix)
+    st.write(classification_report(Y_test, y_pred))
     st.write(plt.show())

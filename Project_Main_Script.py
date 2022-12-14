@@ -227,7 +227,7 @@ marge_effect_comorbidity = res.get_margeff(at='mean', method='dydx')
 
 
 with st.expander('Whant to better understand the causality between this two variables ?'): 
-  st.write(marge_effect_comorbidity.summary())
+    st.write(marge_effect_comorbidity.summary())
     if (comorbidity=='Age'):
       st.write()
       st.write('The distribution of morbidity according to age shows us that the proportion of people who die increases with age.' 

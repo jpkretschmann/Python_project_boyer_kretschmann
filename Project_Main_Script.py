@@ -1,9 +1,12 @@
-# -*- coding: utf-8 -*-
 """
 Created on Sun Nov 27 10:45:39 2022
-
 @author: gaspb jpk
 """
+# TO DO LIST for the JPK: 
+# In the graph of cause distribution the sex variable / remove the sex variable from the age distribution of causes (don't forget to change the titles); 
+# Adding the talking about the probit model
+# Speeling error (Sorry me monkey)
+# Erase the to do list
 
 import streamlit as st
 import pandas as pd
@@ -226,20 +229,8 @@ marge_effect_comorbidity = res.get_margeff(at='mean', method='dydx')
 with st.expander('Whant to better understand the causality between this two variables ?'): 
     st.write(marge_effect_comorbidity.summary())
     
-    #if (comorbidity=='Age'):
-        #st.write('We notice that age leads to a worsening of heart failure.')
-        #st.write('Seeing your age increase by one year means that you have a 1% chance of dying of heart failure. ')
-    #elif (comorbidity=='Anaemia'):
-        #st.write('Anemia is a frequent comorbidity of heart failure and is associated with poor outcomes. Anemia in heart failure is considered to develop due to a complex interaction of iron deficiency, kidney disease, and cytokine production, although micronutrient insufficiency and blood loss may contribute.')
-    #elif (comorbidity=='Diabetes'):
-        #st.write('Work in Progress')
-    #elif (comorbidity=='High blood pressure'):
-        #st.write('Work in Progress')
-    #else :
-        #st.write('Work in Progress')
-
     if (comorbidity=='Age'):
-        st.write()
+      st.write()
         st.write('The distribution of morbidity according to age shows us that the proportion of people who die increases with age.' 
         st.write('Even if we cannot speak about coormobity, age remains an aggravating factor.') 
         st.write('Indeed, it is estimated that taking one year of age increases the chances of death by about ',0.0119,'%.')
@@ -258,7 +249,9 @@ with st.expander('Whant to better understand the causality between this two vari
     else :
         st.write()
         st.write('We can see that the proportion of smokers is the same if we consider the living and the dead. We can therefore conclude that diabetes does not play a role in the outcome of heart failure. This intuition is confirmed when we apply a probit model, the smoking variable is not significant.')
-        
+
+
+
 
 
 #############
@@ -362,6 +355,7 @@ with st.expander('Do you want to see the result of your patient ?'):
 
     st.write('Your patient ', name,'has a', round(normsdist(pourcentage.iloc[0].squeeze())*100, 1), ' % probability of being under life-threatening conditions' )
 
+with st.expander('Do you want to see the behind of this prediction ?'):
+    st.write('Work in Progress my dude')
 
-    
 

@@ -383,7 +383,7 @@ X_train, X_test, Y_train, Y_test = train_test_split(df_X, df_Y,
                                                       random_state=0)
 
 
-probit_model=smf.Probit(Y_train,X_train)
+probit_model=sm.Probit(Y_train,X_train)
 result_full=probit_model.fit()
 
 params = pd.DataFrame(probit_model.fit().params,columns={'coef'},)

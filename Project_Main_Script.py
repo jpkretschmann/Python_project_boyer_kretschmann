@@ -388,7 +388,7 @@ result_full=probit_model.fit()
 
 params = pd.DataFrame(probit_model.fit().params,columns={'coef'},)
 result1 = X_test
-result1['y_pred'] = result1['age'] * params['coef'][0] + result1['anaemia'] * params['coef'][1] + result1['creatinine_phosphokinase'] * params['coef'][2] + result1['diabetes'] * params['coef'][3] + result1['ejection_fraction'] * params['coef'][4] + result1['high_blood_pressure'] * params['coef'][5] + result1['platelets'] * params['coef'][6] + result1['serum_creatinine'] * params['coef'][7] + result1['serum_sodium'] * params['coef'][8] + result1['sex'] * params['coef'][9] + result1['smoking'] * params['coef'][10] 
+result1['y_pred'] = result1['age'] * params.iloc[0] + result1['anaemia'] * params.iloc[1] + result1['creatinine_phosphokinase'] * params.iloc[2] + result1['diabetes'] * params.iloc[3] + result1['ejection_fraction'] * params.iloc[4] + result1['high_blood_pressure'] * params.iloc[5] + result1['platelets'] * params.iloc[6] + result1['serum_creatinine'] * params.iloc[7] + result1['serum_sodium'] * params.iloc[8] + result1['sex'] * params.iloc[9] + result1['smoking'] * params.iloc[10]
 
 import scipy.stats as si
 def normsdist(z):

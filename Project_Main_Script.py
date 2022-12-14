@@ -362,6 +362,7 @@ result_full=probit_model.fit()
 marge_effect = result_full.get_margeff(at='mean', method='dydx')
 
 
+
 ####### Testing the model on new_df ######
 
 params = pd.DataFrame(probit_model.fit().params,)
@@ -369,16 +370,72 @@ params = pd.DataFrame(probit_model.fit().params,)
 pourcentage = new_df['Age'] * params.iloc[0] + new_df['Anaemia'] * params.iloc[1] + new_df['CPK'] * params.iloc[2] + new_df['Diabetes'] * params.iloc[3] + new_df['Percentage of ejection fraction'] * params.iloc[4] + new_df['High blood pressure'] * params.iloc[5] + new_df['Level of platelets'] * params.iloc[6] + new_df['Level of creatinine'] * params.iloc[7] + new_df['Level of sodium'] * params.iloc[8] + new_df['Sex'] * params.iloc[9] + new_df['Smoking'] * params.iloc[10]
 pourcentage = pd.DataFrame(pourcentage)
 
+
+####### Evaluation of  Probit model
+
+
+result1 = X_test
+result1['y_pred'] = result1['age'] * params.iloc[0] + result1['anaemia'] * params.iloc[1] + result1['creatinine_phosphokinase'] * params.iloc[2] + result1['diabetes'] * params.iloc[3] + result1['ejection_fraction'] * params.iloc[4] + result1['high_blood_pressure'] * params.iloc[5] + result1['platelets'] * params.iloc[6] + result1['serum_creatinine'] * params.iloc[7] + result1['serum_sodium'] * params.iloc[8] + result1['sex'] * params.iloc[9] + result1['smoking'] * params.iloc[10] + result1['time'] * params.iloc[11]
+
+
 def normsdist(z):
     z = si.norm.cdf(z,0.0,1.0)
     return (z)
+
+result1["y_pred_Probit"] = normsdist(result1["y_pred"])
+
+d = {'y_pred_proba': result1['y_pred_Probit']}
+df23 = pd.DataFrame(data=d)
+df23 = df23.reset_index()
+df23.drop(['index'], axis=1, inplace=True)
+df23['y_pred'] = 0.000
+for i in range(0,len(df23['y_pred_proba'])):
+    if df23['y_pred_proba'][i] > 0.45:
+        df23['y_pred'][i] = 1.000
+    else: 
+        df23['y_pred'][i] = 0.000
+y_pred = np.array(df23['y_pred'])
+y_pred = y_pred.astype('int64')
+
+result1["decision"] = y_pred
+result1["actual"] = Y_test
+
+
+confusion_matrix = confusion_matrix(Y_test, y_pred)
+
+
+y_pred_proba = np.array(df23['y_pred_proba'])
+probit_roc_auc = roc_auc_score(Y_test, y_pred)
+fpr, tpr, thresholds = roc_curve(Y_test, y_pred_proba)
+plt.figure()
+plt.plot(fpr, tpr, label='Probit Model (area = %0.2f)' % probit_roc_auc)
+plt.plot([0, 1], [0, 1],'r--')
+plt.xlim([0.0, 1.0])
+plt.ylim([0.0, 1.05])
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+plt.title('Receiver operating characteristic')
+plt.legend(loc="lower right")
+plt.savefig('Probit_ROC')
+
+
+
+
 
 ####### Displaying our results 
 with st.expander('Do you want to see the result of your patient ?'): 
 
     st.write('Your patient ', name,'has a', round(normsdist(pourcentage.iloc[0].squeeze())*100, 1), ' % probability of being under life-threatening conditions' )
 
-with st.expander('Do you want to see the behind of this prediction ?'):
-    st.write('Work in Progress my dude')
-
-
+with st.expander('Do you want to see behind the scenes of this prediction ? Watch out! It is getting spicy'):
+    st.write('For the prediction we use the econometric Probit model to obtain a probability for our target variable "Dead". We decided against a classical Machine Learning model such as a Decision tree classifier as we wanted to obtain a probability of death given a specific set of independent variables and decompose the influence of the respective variables on the probability through the marginal effects.')
+    st.write('To apply or translate the results into interpretable and applicable cooeficients one need to apply the probit results on a normal distribution. This will output marginal probabilities of the predictors.)
+    st.write('After obtaining the marginal probabilities of each predictor we multiply each marginal effect with the input values of each predictor and sum them up to obtain a final death probability which we see in the final output of the appliaction')
+    st.write('Of course we weighted against a logit or a classical machine learning process by evaluating the accuracy of the model. Yet, this is not trivial as we obtain a percentage, not a definied classification whether the patient is going to die or not given the inputs. Therefore it is necessary to define a rule of decision i.e. a probability threshold above which a patient in our sample is given a dead or alive decision. We decided to set that threshold arbitrarily to 45%. If a patient has a probability of over 45% to die, the model will predict that the patient will definetely die')
+    st.write('This is of course subject of discussion if that threshold is properly choosen, yet experimentation showed that this threshold yield the best accuracy')
+    st.write('Herby we display some metrics to evaluate our model:')
+    st.write(print(result_full.summary()))
+    st.write(print('Accuracy of the Probit Model on test set: {:.2f}'.format(accuracy_score(Y_test, y_pred))))
+    st.write(print(confusion_matrix))
+    st.write(print(classification_report(Y_test, y_pred)))
+    st.write(plt.show())

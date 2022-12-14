@@ -146,7 +146,7 @@ if cause == 'Age':
 else:
   cause_distribution = px.histogram(df, cause, color ='Sex', barmode='group', histnorm = 'percent', title= 'Density of '+cause+' among the patients', text_auto = True)
   cause_distribution.update_xaxes(type='category')
-  cause_distribution3 = px.histogram(df, x='Age', y= cause , title= 'Distribution of '+cause+' disease among age groups by sex', text_auto = True)
+  cause_distribution3 = px.histogram(df, x='Age', y= cause ,histnorm = 'density', title= 'Distribution of '+cause+' disease among age groups by sex', text_auto = True)
   
   st.plotly_chart(cause_distribution)
   st.plotly_chart(cause_distribution3)  
@@ -187,7 +187,7 @@ with st.expander('Interested in a more detailed explanation ?'):
 
 
 
-st.header('Heart faillure in relation')
+st.header('Heart failure in relation')
 st.subheader('What is the relation of this comorbidity on death ?')
 
 st.write('As we said, heart failure can sometimes be the source of death of some patients. In most cases, the deceased were suffering, in addition to heart failure, other diseases reinforcing the consequences of the first. We talk about comorbidities.')

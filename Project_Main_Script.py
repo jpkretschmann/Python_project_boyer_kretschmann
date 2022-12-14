@@ -146,7 +146,7 @@ if cause == 'Age':
 else:
   cause_distribution = px.histogram(df, cause, color ='Sex', barmode='group', histnorm = 'percent', title= 'Density of '+cause+' among the patients', text_auto = True)
   cause_distribution.update_xaxes(type='category')
-  cause_distribution3 = px.histogram(df, x='Age', y= cause ,histnorm = 'density', title= 'Distribution of '+cause+' disease among age groups by sex', text_auto = True)
+  cause_distribution3 = px.histogram(df, x='Age', y= cause , histnorm = 'density', title= 'Distribution of '+cause+' disease among age groups')
   
   st.plotly_chart(cause_distribution)
   st.plotly_chart(cause_distribution3)  

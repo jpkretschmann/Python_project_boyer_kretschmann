@@ -404,7 +404,7 @@ df23 = df23.reset_index()
 df23.drop(['index'], axis=1, inplace=True)
 df23['y_pred'] = 0.000
 for i in range(0,len(df23['y_pred_proba'])):
-    if df23['y_pred_proba'][i] > 0.50:
+    if df23['y_pred_proba'][i] > 0.45:
         df23['y_pred'][i] = 1.000
     else: 
         df23['y_pred'][i] = 0.000
@@ -437,7 +437,7 @@ with st.expander('Do you want to see behind the scenes of this prediction ? Watc
     st.write('This is of course subject of discussion if that threshold is properly choosen, yet experimentation showed that this threshold yield the best accuracy')
     st.write('Herby we display some metrics to evaluate our model:')
     st.write(result_full.summary())
+    st.write()
     st.write('The accuracy of the Probit Model on test set: {:.2f}'.format(accuracy_score(Y_test, y_pred)))
-    st.write(confusion_matrix)
-    st.write(classification_report(Y_test, y_pred))
-    #st.write(plt.show())
+
+    

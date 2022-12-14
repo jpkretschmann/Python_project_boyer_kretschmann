@@ -374,14 +374,27 @@ pourcentage = pd.DataFrame(pourcentage)
 
 ####### Evaluation of  Probit model
 
+df = pd.read_csv(url, sep=',')
+df = pd.DataFrame(df)
+df_X = df.drop(['DEATH_EVENT','time'],axis=1)
+df_Y = df[['DEATH_EVENT']]
+X_train, X_test, Y_train, Y_test = train_test_split(df_X, df_Y,
+                                                      test_size=0.3,
+                                                      random_state=0)
 
+
+probit_model=smf.Probit(Y_train,X_train)
+result_full=probit_model.fit()
+
+params = pd.DataFrame(probit_model.fit().params,columns={'coef'},)
 result1 = X_test
-result1['y_pred'] = result1['age'] * params.iloc[0] + result1['anaemia'] * params.iloc[1] + result1['creatinine_phosphokinase'] * params.iloc[2] + result1['diabetes'] * params.iloc[3] + result1['ejection_fraction'] * params.iloc[4] + result1['high_blood_pressure'] * params.iloc[5] + result1['platelets'] * params.iloc[6] + result1['serum_creatinine'] * params.iloc[7] + result1['serum_sodium'] * params.iloc[8] + result1['sex'] * params.iloc[9] + result1['smoking'] * params.iloc[10]
+result1['y_pred'] = result1['age'] * params['coef'][0] + result1['anaemia'] * params['coef'][1] + result1['creatinine_phosphokinase'] * params['coef'][2] + result1['diabetes'] * params['coef'][3] + result1['ejection_fraction'] * params['coef'][4] + result1['high_blood_pressure'] * params['coef'][5] + result1['platelets'] * params['coef'][6] + result1['serum_creatinine'] * params['coef'][7] + result1['serum_sodium'] * params['coef'][8] + result1['sex'] * params['coef'][9] + result1['smoking'] * params['coef'][10] 
 
-
+import scipy.stats as si
 def normsdist(z):
     z = si.norm.cdf(z,0.0,1.0)
     return (z)
+
 
 result1["y_pred_Probit"] = normsdist(result1["y_pred"])
 
@@ -391,18 +404,36 @@ df23 = df23.reset_index()
 df23.drop(['index'], axis=1, inplace=True)
 df23['y_pred'] = 0.000
 for i in range(0,len(df23['y_pred_proba'])):
-    if df23['y_pred_proba'][i] > 0.45:
+    if df23['y_pred_proba'][i] > 0.50:
         df23['y_pred'][i] = 1.000
     else: 
         df23['y_pred'][i] = 0.000
 y_pred = np.array(df23['y_pred'])
 y_pred = y_pred.astype('int64')
 
+
 result1["decision"] = y_pred
 result1["actual"] = Y_test
 
 
+
+print('Accuracy of Probit Model on test set: {:.2f}'.format(accuracy_score(Y_test, y_pred)))
 confusion_matrix = confusion_matrix(Y_test, y_pred)
+print(classification_report(Y_test, y_pred))
+
+y_pred_proba = np.array(df23['y_pred_proba'])
+
+probit_roc_auc = roc_auc_score(Y_test, y_pred)
+fpr, tpr, thresholds = roc_curve(Y_test, y_pred_proba)
+plt.figure()
+plt.plot(fpr, tpr, label='Probit Model (area = %0.2f)' % probit_roc_auc)
+plt.plot([0, 1], [0, 1],'r--')
+plt.xlim([0.0, 1.0])
+plt.ylim([0.0, 1.05])
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+plt.title('Receiver operating characteristic')
+plt.legend(loc="lower right")
 
 
 

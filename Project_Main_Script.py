@@ -438,4 +438,4 @@ with st.expander('Do you want to see behind the scenes of this prediction ? Watc
     st.write('Herby we display some metrics to evaluate our model:')
     st.write(result_full.summary())
     st.write('')
-    st.write('The accuracy of the Probit Model on test set: ' accuracy_score(Y_test, y_pred) '%')
+    st.write('The accuracy of the Probit Model on test set: ' + accuracy_score(Y_test, y_pred) + '%')

@@ -71,7 +71,7 @@ median_survival_day_men = men_df[men_df['Dead']==0]['Number of day survied post 
 median_survival_day_women = women_df[women_df['Dead']==0]['Number of day survied post diagnostic'].median()
 
 st.write('In 2001 in France, the number of people with heart failure was 500,000, with 120,000 new cases each year.  Heart failure is responsible for more than 32,000 deaths per year. Properly managed, this disease does not lead directly to death. Indeed, on a sample of about 300 people, we estimate a survival rate of survival for both men and woman of', men_survival_rate,'%. Moreover, we note that for the deceased, the median number of days of survival after diagnosis is', median_survival_day_men, 'days for men and for women ', median_survival_day_women, ' days.' )
-st.write('In this application we are discribing the different physilogical measurements and indicators medically realted to the occurence of heart failiure. Hereby we investigate patients who endure heart disease and try to explain which variables could indicate a possible heart failire, thus death, in the future due to the heart disease.
+st.write('In this application we are discribing the different physilogical measurements and indicators medically realted to the occurence of heart failiure. Hereby we investigate patients who endure heart disease and try to explain which variables could indicate a possible heart failire, thus death, in the future due to the heart disease.')
 
 st.subheader('What are the indicators ?')
 st.write('Thus, it is essential to detect it as soon as possible.' 

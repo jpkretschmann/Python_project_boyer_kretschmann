@@ -231,7 +231,7 @@ with st.expander('Whant to better understand the causality between this two vari
     if (comorbidity=='Age'):
       st.write()
       st.write('The distribution of morbidity according to age shows us that the proportion of people who die increases with age.' 
-      st.write('Even if we cannot speak about coormobity, age remains an aggravating factor.') 
+      #st.write('Even if we cannot speak about comorbity, age remains an aggravating factor.') 
       st.write('Indeed, it is estimated that taking one year of age increases the chances of death by about ',0.0119,'%.')
     elif (comorbidity=='Anaemia'):
       st.write()

@@ -241,7 +241,6 @@ with st.expander('Want to dig deeper into the causality between these two variab
     elif (comorbidity=='Diabetes'):
         st.write('Work in Progress')
     elif (comorbidity=='High blood pressure'):
-        st.write('Work in Progress')
         st.write()
         st.write('The proportion of people with high blood pressure is about 8% higher among the living than among the deceased.')
         st.write('This result is, to our previous explanations, counter intuitive. One would have thought that high blood pressure was an aggravating factor.')

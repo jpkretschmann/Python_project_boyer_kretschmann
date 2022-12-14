@@ -226,28 +226,45 @@ res = mod.fit()
 marge_effect_comorbidity = res.get_margeff(at='mean', method='dydx')
 
 
+
 with st.expander('Whant to better understand the causality between this two variables ?'): 
     st.write(marge_effect_comorbidity.summary())
+    
     if (comorbidity=='Age'):
-      st.write()
-      st.write('The distribution of morbidity according to age shows us that the proportion of people who die increases with age.' 
-      #st.write('Even if we cannot speak about comorbity, age remains an aggravating factor.') 
-      #st.write('Indeed, it is estimated that taking one year of age increases the chances of death by about ',0.0119,'%.')
+        st.write('We notice that age leads to a worsening of heart failure.')
+        st.write('Seeing your age increase by one year means that you have a 1% chance of dying of heart failure. ')
     elif (comorbidity=='Anaemia'):
-      st.write()
-      st.write('We can see that the proportion of diabetics is the same if we look at the living and the dead. Thus, we can conclude that diabetes does not play a role in the outcome of heart failure. This intuition is confirmed when we apply a probit model, the diabetes variable fails to be significant. ')
+        st.write('Anemia is a frequent comorbidity of heart failure and is associated with poor outcomes. Anemia in heart failure is considered to develop due to a complex interaction of iron deficiency, kidney disease, and cytokine production, although micronutrient insufficiency and blood loss may contribute.')
     elif (comorbidity=='Diabetes'):
-      st.write()
-      st.write('We can see that the proportion of diabetics is the same if we look at the living and the dead. Thus, we can conclude that diabetes does not play a role in the outcome of heart failure. This intuition is confirmed when we apply a probit model, the diabetes variable fails to be significant. ')
+        st.write('Work in Progress')
     elif (comorbidity=='High blood pressure'):
-      st.write()
-      st.write('The proportion of people with high blood pressure is about 8% higher among the living than among the deceased.')
-      st.write('This result is, to our previous explanations, counter intuitive. One would have thought that high blood pressure was an aggravating factor.')
-      st.write('Nevertheless, the statistical examination of this variable does not manage to find any significance to this factor.') 
-      st.write('Thus, it is possible to think that this increase is insignificant. It could simply be the result of a particular sample.')
+        st.write('Work in Progress')
     else :
-      st.write()
-      st.write('We can see that the proportion of smokers is the same if we consider the living and the dead. We can therefore conclude that diabetes does not play a role in the outcome of heart failure. This intuition is confirmed when we apply a probit model, the smoking variable is not significant.')
+        st.write('Work in Progress')
+
+
+#with st.expander('Whant to better understand the causality between this two variables ?'): 
+#    st.write(marge_effect_comorbidity.summary())
+#    if (comorbidity=='Age'):
+#      st.write()
+#      st.write('The distribution of morbidity according to age shows us that the proportion of people who die increases with age.' 
+#      #st.write('Even if we cannot speak about comorbity, age remains an aggravating factor.') 
+#      #st.write('Indeed, it is estimated that taking one year of age increases the chances of death by about ',0.0119,'%.')
+#    elif (comorbidity=='Anaemia'):
+#      st.write()
+#      st.write('We can see that the proportion of diabetics is the same if we look at the living and the dead. Thus, we can conclude that diabetes does not play a role in the outcome of heart failure. This intuition is confirmed when we apply a probit model, the diabetes variable fails to be significant. ')
+#    elif (comorbidity=='Diabetes'):
+#      st.write()
+#      st.write('We can see that the proportion of diabetics is the same if we look at the living and the dead. Thus, we can conclude that diabetes does not play a role in the outcome of heart failure. This intuition is confirmed when we apply a probit model, the diabetes variable fails to be significant. ')
+#    elif (comorbidity=='High blood pressure'):
+#      st.write()
+#      st.write('The proportion of people with high blood pressure is about 8% higher among the living than among the deceased.')
+#      st.write('This result is, to our previous explanations, counter intuitive. One would have thought that high blood pressure was an aggravating factor.')
+#      st.write('Nevertheless, the statistical examination of this variable does not manage to find any significance to this factor.') 
+#      st.write('Thus, it is possible to think that this increase is insignificant. It could simply be the result of a particular sample.')
+#    else :
+#      st.write()
+#      st.write('We can see that the proportion of smokers is the same if we consider the living and the dead. We can therefore conclude that diabetes does not play a role in the outcome of heart failure. This intuition is confirmed when we apply a probit model, the smoking variable is not significant.')
 
 
 

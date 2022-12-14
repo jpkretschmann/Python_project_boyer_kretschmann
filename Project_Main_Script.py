@@ -232,7 +232,7 @@ with st.expander('Whant to better understand the causality between this two vari
       st.write()
       st.write('The distribution of morbidity according to age shows us that the proportion of people who die increases with age.' 
       #st.write('Even if we cannot speak about comorbity, age remains an aggravating factor.') 
-      st.write('Indeed, it is estimated that taking one year of age increases the chances of death by about ',0.0119,'%.')
+      #st.write('Indeed, it is estimated that taking one year of age increases the chances of death by about ',0.0119,'%.')
     elif (comorbidity=='Anaemia'):
       st.write()
       st.write('We can see that the proportion of diabetics is the same if we look at the living and the dead. Thus, we can conclude that diabetes does not play a role in the outcome of heart failure. This intuition is confirmed when we apply a probit model, the diabetes variable fails to be significant. ')

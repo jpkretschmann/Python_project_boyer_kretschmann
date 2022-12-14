@@ -386,7 +386,7 @@ X_train, X_test, Y_train, Y_test = train_test_split(df_X, df_Y,
 probit_model=sm.Probit(Y_train,X_train)
 result_full=probit_model.fit()
 
-params = pd.DataFrame(probit_model.fit().params,columns={'coef'},)
+params = pd.DataFrame(probit_model.fit().params,)
 result1 = X_test
 result1['y_pred'] = result1['age'] * params.iloc[0] + result1['anaemia'] * params.iloc[1] + result1['creatinine_phosphokinase'] * params.iloc[2] + result1['diabetes'] * params.iloc[3] + result1['ejection_fraction'] * params.iloc[4] + result1['high_blood_pressure'] * params.iloc[5] + result1['platelets'] * params.iloc[6] + result1['serum_creatinine'] * params.iloc[7] + result1['serum_sodium'] * params.iloc[8] + result1['sex'] * params.iloc[9] + result1['smoking'] * params.iloc[10]
 

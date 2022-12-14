@@ -437,7 +437,7 @@ with st.expander('Do you want to see behind the scenes of this prediction ? Watc
     st.write('This is of course subject of discussion if that threshold is properly choosen, yet experimentation showed that this threshold yield the best accuracy')
     st.write('Herby we display some metrics to evaluate our model:')
     st.write(result_full.summary())
-    st.write()
+    st.write('')
     st.write('The accuracy of the Probit Model on test set: {:.2f}'.format(accuracy_score(Y_test, y_pred)))
 
     

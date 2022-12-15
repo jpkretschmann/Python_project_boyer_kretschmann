@@ -374,20 +374,6 @@ pourcentage = pd.DataFrame(pourcentage)
 
 ####### Evaluation of probit model
 
-df = pd.read_csv(url, sep=',')
-df = pd.DataFrame(df)
-df_X = df.drop(['DEATH_EVENT','time'],axis=1)
-df_Y = df[['DEATH_EVENT']]
-X_train, X_test, Y_train, Y_test = train_test_split(df_X, df_Y,
-                                                      test_size=0.3,
-                                                      random_state=0)
-
-
-probit_model=sm.Probit(Y_train,X_train)
-result_full=probit_model.fit()
-
-params = pd.DataFrame(probit_model.fit().params,)
-
 
 result1 = X_test
 result1['y_pred'] = result1['age'] * params.iloc[0] + result1['anaemia'] * params.iloc[1] + result1['creatinine_phosphokinase'] * params.iloc[2] + result1['diabetes'] * params.iloc[3] + result1['ejection_fraction'] * params.iloc[4] + result1['high_blood_pressure'] * params.iloc[5] + result1['platelets'] * params.iloc[6] + result1['serum_creatinine'] * params.iloc[7] + result1['serum_sodium'] * params.iloc[8] + result1['sex'] * params.iloc[9] + result1['smoking'] * params.iloc[10]
@@ -397,10 +383,7 @@ def normsdist(z):
     z = si.norm.cdf(z,0.0,1.0)
     return (z)
 
-
 result1["y_pred_Probit"] = normsdist(result1["y_pred"])
-
-
 
 #### Decision rule to determine if patient is dead = 0 or 1
 d = {'y_pred_proba': result1['y_pred_Probit']}
@@ -420,11 +403,8 @@ y_pred = y_pred.astype('int64')
 result1["decision"] = y_pred
 result1["actual"] = Y_test
 
-
-
 print('Accuracy of Probit Model on test set: {:.2f}'.format(accuracy_score(Y_test, y_pred)))
 confusion_matrix = confusion_matrix(Y_test, y_pred)
-
 
 
 

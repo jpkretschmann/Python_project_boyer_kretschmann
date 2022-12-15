@@ -385,7 +385,6 @@ def normsdist(z):
 
 result1["y_pred_Probit"] = normsdist(result1["y_pred"])
 
-y_pred_proba = np.array(df23['y_pred_proba'])
 
 
 #### Decision rule to determine if patient is dead = 0 or 1
@@ -409,6 +408,8 @@ result1["actual"] = Y_test
 print('Accuracy of Probit Model on test set: {:.2f}'.format(accuracy_score(Y_test, y_pred)))
 confusion_matrix = confusion_matrix(Y_test, y_pred)
 
+
+y_pred_proba = np.array(df23['y_pred_proba'])
 probit_roc_auc = roc_auc_score(Y_test, y_pred)
 fpr, tpr, thresholds = roc_curve(Y_test, y_pred_proba)
 plt.figure()

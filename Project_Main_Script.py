@@ -455,7 +455,7 @@ with st.expander('Do you want to see behind the scenes of this prediction ? Watc
   
 
   
-  st.write('A Python project by Gaspard Boyer and Jan-Philipp Kretschmann')
-  st.write('Université Paris Dauphine - PSL , Master QEA')
+st.write('A Python project by Gaspard Boyer and Jan-Philipp Kretschmann')
+st.write('Université Paris Dauphine - PSL , Master QEA')
           
     

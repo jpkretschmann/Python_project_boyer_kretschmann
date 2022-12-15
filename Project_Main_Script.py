@@ -276,7 +276,7 @@ with st.expander('Want to dig deeper into the causality between these two variab
 #      st.write()
 #      st.write('We can see that the proportion of smokers is the same if we consider the living and the dead. We can therefore conclude that diabetes does not play a role in the outcome of heart failure. This intuition is confirmed when we apply a probit model, the smoking variable is not significant.')
 
-
+st.write('')
 st.write('What is interesting to be noted is the fact that many combination of different diseases may make a detrimental cocktail of diseases which in combination significantely increase the probability of death. This investigation of different combinations in relation to heart failure remains a topic to be aware of and is unfortunately beyond the scope of our analysis. We happily leave this frontier to discover to our fellows academic collegues.')
 
 

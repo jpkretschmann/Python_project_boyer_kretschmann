@@ -453,7 +453,7 @@ with st.expander('Do you want to see behind the scenes of this prediction ? Watc
   
   
 
-st.martkdown('##')
+st.markdown('')
 st.write('A Python project by Gaspard Boyer and Jan-Philipp Kretschmann')
 st.write('Université Paris Dauphine - PSL , Master QEA')
           

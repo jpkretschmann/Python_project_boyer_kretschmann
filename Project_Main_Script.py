@@ -444,4 +444,4 @@ with st.expander('Do you want to see behind the scenes of this prediction ? Watc
     st.write(result_full.summary())
     st.write('')
     st.write('The accuracy of Probit Model on the test set is: ', round(accuracy_score(Y_test, y_pred)*100,1),'%')
-    st.write('confusion_matrix')
+    st.write(confusion_matrix)

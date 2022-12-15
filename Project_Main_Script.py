@@ -2,11 +2,7 @@
 Created on Sun Nov 27 10:45:39 2022
 @author: gaspb jpk
 """
-# TO DO LIST for the JPK: 
-# In the graph of cause distribution the sex variable / remove the sex variable from the age distribution of causes (don't forget to change the titles); 
-# Adding the talking about the probit model
-# Speeling error (Sorry me monkey)
-# Erase the to do list
+
 
 import streamlit as st
 import pandas as pd
@@ -27,9 +23,7 @@ from sklearn.metrics import confusion_matrix, accuracy_score, mean_squared_error
 
 plt.rc("font", size=14)
 
-#/Users/jan-philippkretschmann/Python_Local/DataSciencePython/
-# streamlit run "C:\Users\gaspb\Downloads\Master 2 QE\Python coding\Project_Python\Coding\Project_Main_Script.py"
-# Renaming our variable to make it clearer : 
+
 url = "https://raw.githubusercontent.com/jpkretschmann/Python_project_boyer_kretscmann/main/heart_failure.csv"
 df = pd.read_csv(url, sep=',')
 df = df.rename(columns = {'age':'Age',
@@ -84,13 +78,11 @@ physiological_measurements = st.selectbox(
     )
 
 distribution_physiological_measurements = px.histogram(df, physiological_measurements, color='Sex', barmode='group', histnorm ='percent', title= 'Distribution of '+physiological_measurements+' among the patients grouped by sex')
-#distribution_physiological_measurements2 = px.histogram(df, x= 'Dead', y= physiological_measurements, color='Dead', histfunc = 'avg', title= 'Distribution of '+physiological_measurements+' among the patients grouped by a death event', color_discrete_sequence=px.colors.qualitative.T10)
 distribution_physiological_measurements3 = px.box(df, x= 'Dead', y= physiological_measurements, color ='Sex', title= 'Comparison of '+physiological_measurements+' among the dead and alive patients')
 
 
 
 st.plotly_chart(distribution_physiological_measurements)
-#st.plotly_chart(distribution_physiological_measurements2)
 st.plotly_chart(distribution_physiological_measurements3)
 
 
@@ -152,19 +144,6 @@ else:
   st.plotly_chart(cause_distribution3)  
 
 
-
-
-#st.plotly_chart(cause_distribution)
-#st.plotly_chart(cause_distribution2)
-#cause_distribution = px.histogram(df,cause, color='Sex', barmode='group', histnorm='percent')
-
-#cause_distribution = px.histogram(df, cause, color='Sex', barmode='group', barnorm = 'fraction', title= 'Density of '+cause+' among the patients')
-#cause_distribution.update_xaxes(type='category')
-#cause_distribution2 = px.histogram(df, x='Dead', color= cause, barnorm = 'fraction', barmode='relative', title= 'Percentage of '+cause+' disease among the alive and dead patients', color_discrete_sequence=px.colors.qualitative.T10, text_auto = True)
-#cause_distribution2.update_xaxes(type='category')
-#st.plotly_chart(cause_distribution)
-#st.plotly_chart(cause_distribution2)
-
 with st.expander('Interested in a more detailed explanation ?'):
         if (cause=='Age'):
             st.write('With age, the body tends to deteriorate. This decrepitude extends in particular to the cardiac muscle which tends to weaken. And thus to be less able to fulfill its functions.')
@@ -197,7 +176,6 @@ comorbidity = st.selectbox(
     ('Age', 'Anaemia','Diabetes', 'High blood pressure', 'Smoking')
     )
 
-#histogram_comorbidity = px.histogram(df,x=comorbidity, color='Dead',barmode='group', title = 'Distribution of the morbidity in function of '+comorbidity)
 
 if comorbidity == 'Age':
   histogram_comorbidity = px.histogram(df,x=comorbidity, color='Dead', barnorm = 'fraction', barmode='relative', title = 'Distribution of the morbidity in function of '+cause)
@@ -207,14 +185,6 @@ else:
  histogram_comorbidity.update_xaxes(type='category')
  st.plotly_chart(histogram_comorbidity)
 
-
-
-
-
-#histogram_comorbidity = px.histogram(df, x=comorbidity, color= 'Dead', barnorm = 'fraction', barmode='relative', title = 'Distribution of the morbidity in function of '+comorbidity , color_discrete_sequence=px.colors.qualitative.T10, text_auto = True)
-#histogram_comorbidity.update_xaxes(type='category')
-#st.plotly_chart(histogram_comorbidity)
-#cause_distribution = px.histogram(df,cause, color='Sex', barmode='group', histnorm='percent', title= 'Distribution of '+cause+' among the patients')
 
 
 df['Level_of_platelets']=df['Level of platelets']
@@ -253,28 +223,7 @@ with st.expander('Want to dig deeper into the causality between these two variab
         st.write('We can see that the proportion of smokers is the same if we consider the living and the dead. We can therefore conclude that diabetes does not play a role in the outcome of heart failure. This intuition is confirmed when we apply a probit model, the smoking variable is not significant.')
 
 
-#with st.expander('Whant to better understand the causality between this two variables ?'): 
-#    st.write(marge_effect_comorbidity.summary())
-#    if (comorbidity=='Age'):
-#      st.write()
-#      st.write('The distribution of morbidity according to age shows us that the proportion of people who die increases with age.') 
-#      #st.write('Even if we cannot speak about comorbity, age remains an aggravating factor.') 
-#      #st.write('Indeed, it is estimated that taking one year of age increases the chances of death by about ',0.0119,'%.')
-#    elif (comorbidity=='Anaemia'):
-#      st.write()
-#      st.write('We can see that the proportion of diabetics is the same if we look at the living and the dead. Thus, we can conclude that diabetes does not play a role in the outcome of heart failure. This intuition is confirmed when we apply a probit model, the diabetes variable fails to be significant. ')
-#    elif (comorbidity=='Diabetes'):
-#      st.write()
-#      st.write('We can see that the proportion of diabetics is the same if we look at the living and the dead. Thus, we can conclude that diabetes does not play a role in the outcome of heart failure. This intuition is confirmed when we apply a probit model, the diabetes variable fails to be significant. ')
-#    elif (comorbidity=='High blood pressure'):
-#      st.write()
-#      st.write('The proportion of people with high blood pressure is about 8% higher among the living than among the deceased.')
-#      st.write('This result is, to our previous explanations, counter intuitive. One would have thought that high blood pressure was an aggravating factor.')
-#      st.write('Nevertheless, the statistical examination of this variable does not manage to find any significance to this factor.') 
-#      st.write('Thus, it is possible to think that this increase is insignificant. It could simply be the result of a particular sample.')
-#    else :
-#      st.write()
-#      st.write('We can see that the proportion of smokers is the same if we consider the living and the dead. We can therefore conclude that diabetes does not play a role in the outcome of heart failure. This intuition is confirmed when we apply a probit model, the smoking variable is not significant.')
+
 
 st.write('')
 st.write('What is interesting to be noted is the fact that many combination of different diseases may make a detrimental cocktail of diseases which in combination significantely increase the probability of death. This investigation of different combinations in relation to heart failure remains a topic to be aware of and is unfortunately beyond the scope of our analysis. We happily leave this frontier to discover to our fellows academic collegues.')
@@ -455,7 +404,6 @@ with st.expander('Do you want to see behind the scenes of this prediction ? Watc
     
     
    
-  
   
 
 st.markdown('')

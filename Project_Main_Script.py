@@ -447,3 +447,15 @@ with st.expander('Do you want to see behind the scenes of this prediction ? Watc
     st.write('')
     st.write('And the ROC curve:')
     st.pyplot(plt)
+    
+    
+   
+  
+  
+  
+
+  
+  st.write('A Python project by Gaspard Boyer and Jan-Philipp Kretschmann')
+  st.write('Université Paris Dauphine - PSL , Master QEA')
+          
+    

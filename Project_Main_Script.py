@@ -238,9 +238,10 @@ with st.expander('Want to dig deeper into the causality between these two variab
         st.write('Indeed, it is estimated that taking one year of age increases the chances of death by about ',0.0119,'%.')
     elif (comorbidity=='Anaemia'):
         st.write()
-        st.write('We can see that the proportion of diabetics is the same if we look at the living and the dead. Thus, we can conclude that diabetes does not play a role in the outcome of heart failure. This intuition is confirmed when we apply a probit model, the diabetes variable fails to be significant. ')
+        st.write('Interesting to see is that among patients suffering from Anaemia, the proportion of death patient is higher than amongst those who do not have this disease. When looking at the probit estimated coefficient we see a postivie value, yet not siginifcant it might give a hint of a possible negative influence of anaemia on the probabbility of surviving.')
     elif (comorbidity=='Diabetes'):
-        st.write('Work in Progress')
+        st.write()
+        st.write('We can see that the proportion of diabetics is the same if we look at the living and the dead. Thus, we can conclude that diabetes does not play a role in the outcome of heart failure. This intuition is confirmed when we apply a probit model, the diabetes variable fails to be significant.s')
     elif (comorbidity=='High blood pressure'):
         st.write()
         st.write('The proportion of people with high blood pressure is about 8% higher among the living than among the deceased.')
@@ -248,6 +249,7 @@ with st.expander('Want to dig deeper into the causality between these two variab
         st.write('Nevertheless, the statistical examination of this variable does not manage to find any significance to this factor.') 
         st.write('Thus, it is possible to think that this increase is insignificant. It could simply be the result of a particular sample.')
     else :
+        st.write()
         st.write('We can see that the proportion of smokers is the same if we consider the living and the dead. We can therefore conclude that diabetes does not play a role in the outcome of heart failure. This intuition is confirmed when we apply a probit model, the smoking variable is not significant.')
 
 
@@ -275,7 +277,7 @@ with st.expander('Want to dig deeper into the causality between these two variab
 #      st.write('We can see that the proportion of smokers is the same if we consider the living and the dead. We can therefore conclude that diabetes does not play a role in the outcome of heart failure. This intuition is confirmed when we apply a probit model, the smoking variable is not significant.')
 
 
-
+st.write('What is interesting to be noted is the fact that many combination of different diseases may make a detrimental cocktail of diseases which in combination significantely increase the probability of death. This investigation of different combinations in relation to heart failure remains a topic to be aware of and is unfortunately beyond the scope of our analysis. We happily leave this frontier to discover to our fellows academic collegues.')
 
 
 #############

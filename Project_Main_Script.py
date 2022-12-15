@@ -385,6 +385,9 @@ def normsdist(z):
 
 result1["y_pred_Probit"] = normsdist(result1["y_pred"])
 
+y_pred_proba = np.array(df23['y_pred_proba'])
+
+
 #### Decision rule to determine if patient is dead = 0 or 1
 d = {'y_pred_proba': result1['y_pred_Probit']}
 df23 = pd.DataFrame(data=d)
@@ -406,6 +409,18 @@ result1["actual"] = Y_test
 print('Accuracy of Probit Model on test set: {:.2f}'.format(accuracy_score(Y_test, y_pred)))
 confusion_matrix = confusion_matrix(Y_test, y_pred)
 
+probit_roc_auc = roc_auc_score(Y_test, y_pred)
+fpr, tpr, thresholds = roc_curve(Y_test, y_pred_proba)
+plt.figure()
+plt.plot(fpr, tpr, label='Probit Model (area = %0.2f)' % probit_roc_auc)
+plt.plot([0, 1], [0, 1],'r--')
+plt.xlim([0.0, 1.0])
+plt.ylim([0.0, 1.05])
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+plt.title('Receiver operating characteristic')
+plt.legend(loc="lower right")
+
 
 
 
@@ -425,3 +440,4 @@ with st.expander('Do you want to see behind the scenes of this prediction ? Watc
     st.write('')
     st.write('The accuracy of Probit Model on the test set is: ', round(accuracy_score(Y_test, y_pred)*100,1),'%')
     st.write(confusion_matrix)
+    st.write(plt.show)

@@ -366,17 +366,19 @@ marge_effect = result_full.get_margeff(at='mean', method='dydx')
 
 ####### Testing the model on new_df ######
 
-params = pd.DataFrame(probit_model.fit().params,)
+params = pd.DataFrame(probit_model.fit().params, columns={'coef'},)
 
-pourcentage = new_df['Age'] * params.iloc[0] + new_df['Anaemia'] * params.iloc[1] + new_df['CPK'] * params.iloc[2] + new_df['Diabetes'] * params.iloc[3] + new_df['Percentage of ejection fraction'] * params.iloc[4] + new_df['High blood pressure'] * params.iloc[5] + new_df['Level of platelets'] * params.iloc[6] + new_df['Level of creatinine'] * params.iloc[7] + new_df['Level of sodium'] * params.iloc[8] + new_df['Sex'] * params.iloc[9] + new_df['Smoking'] * params.iloc[10]
+
+
+pourcentage = new_df['Age'] * params['coef'][0] + new_df['Anaemia'] * params['coef'][1] + new_df['CPK'] * params['coef'][2] + new_df['Diabetes'] * params['coef'][3] + new_df['Percentage of ejection fraction'] * params['coef'][4] + new_df['High blood pressure'] * params['coef'][5] + new_df['Level of platelets'] * params['coef'][6] + new_df['Level of creatinine'] * params['coef'][7] + new_df['Level of sodium'] * params['coef'][8] + new_df['Sex'] * params['coef'][9] + new_df['Smoking'] * params['coef'][10] 
 pourcentage = pd.DataFrame(pourcentage)
-
 
 ####### Evaluation of probit model
 print(result_full.summary())
 
+
 result1 = X_test
-result1['y_pred'] = result1['age'] * params.iloc[0] + result1['anaemia'] * params.iloc[1] + result1['creatinine_phosphokinase'] * params.iloc[2] + result1['diabetes'] * params.iloc[3] + result1['ejection_fraction'] * params.iloc[4] + result1['high_blood_pressure'] * params.iloc[5] + result1['platelets'] * params.iloc[6] + result1['serum_creatinine'] * params.iloc[7] + result1['serum_sodium'] * params.iloc[8] + result1['sex'] * params.iloc[9] + result1['smoking'] * params.iloc[10]
+#result1['y_pred'] = result1['age'] * params.iloc[0] + result1['anaemia'] * params.iloc[1] + result1['creatinine_phosphokinase'] * params.iloc[2] + result1['diabetes'] * params.iloc[3] + result1['ejection_fraction'] * params.iloc[4] + result1['high_blood_pressure'] * params.iloc[5] + result1['platelets'] * params.iloc[6] + result1['serum_creatinine'] * params.iloc[7] + result1['serum_sodium'] * params.iloc[8] + result1['sex'] * params.iloc[9] + result1['smoking'] * params.iloc[10]
 
 import scipy.stats as si
 def normsdist(z):

@@ -372,7 +372,7 @@ pourcentage = new_df['Age'] * params.iloc[0] + new_df['Anaemia'] * params.iloc[1
 pourcentage = pd.DataFrame(pourcentage)
 
 
-####### Evaluation of  Probit model
+####### Evaluation of probit model
 
 df = pd.read_csv(url, sep=',')
 df = pd.DataFrame(df)
@@ -387,6 +387,8 @@ probit_model=sm.Probit(Y_train,X_train)
 result_full=probit_model.fit()
 
 params = pd.DataFrame(probit_model.fit().params,)
+
+
 result1 = X_test
 result1['y_pred'] = result1['age'] * params.iloc[0] + result1['anaemia'] * params.iloc[1] + result1['creatinine_phosphokinase'] * params.iloc[2] + result1['diabetes'] * params.iloc[3] + result1['ejection_fraction'] * params.iloc[4] + result1['high_blood_pressure'] * params.iloc[5] + result1['platelets'] * params.iloc[6] + result1['serum_creatinine'] * params.iloc[7] + result1['serum_sodium'] * params.iloc[8] + result1['sex'] * params.iloc[9] + result1['smoking'] * params.iloc[10]
 
@@ -398,6 +400,9 @@ def normsdist(z):
 
 result1["y_pred_Probit"] = normsdist(result1["y_pred"])
 
+
+
+#### Decision rule to determine if patient is dead = 0 or 1
 d = {'y_pred_proba': result1['y_pred_Probit']}
 df23 = pd.DataFrame(data=d)
 df23 = df23.reset_index()
@@ -439,3 +444,4 @@ with st.expander('Do you want to see behind the scenes of this prediction ? Watc
     st.write(result_full.summary())
     st.write('')
     st.write('The accuracy of Probit Model on the test set is: ', round(accuracy_score(Y_test, y_pred)*100,1),'%')
+    st.write('confusion_matrix')

@@ -283,7 +283,7 @@ with st.expander('Want to dig deeper into the causality between these two variab
 
 st.header('Understanding the death probability based on the sample and you !')
 
-st.write("If you wish, you can fill out a fictitious heart failure patient file. On the basis of the information provided, we will establish the likelihood that the patient's vital prognosis is compromised.")
+st.write("If you wish, you can fill out a fictitious heart failure patient file. On the basis of the information provided, we will establish the likelihood that the patient's vital prognosis is compromised. Notice that we assume that the patient already has a heart disease.")
 st.write('Our analysis is based on a probit model. The performance of the model is as follows: ')
 st.write('Note that we had only 299 observations to proceed to its training and its control.')
 

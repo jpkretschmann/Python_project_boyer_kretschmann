@@ -376,7 +376,7 @@ print(result_full.summary())
 
 
 result1 = X_test
-#result1['y_pred'] = result1['age'] * params.iloc[0] + result1['anaemia'] * params.iloc[1] + result1['creatinine_phosphokinase'] * params.iloc[2] + result1['diabetes'] * params.iloc[3] + result1['ejection_fraction'] * params.iloc[4] + result1['high_blood_pressure'] * params.iloc[5] + result1['platelets'] * params.iloc[6] + result1['serum_creatinine'] * params.iloc[7] + result1['serum_sodium'] * params.iloc[8] + result1['sex'] * params.iloc[9] + result1['smoking'] * params.iloc[10]
+result1['y_pred'] = result1['age'] * params[0][0] + result1['anaemia'] * params[0][1] + result1['creatinine_phosphokinase'] * params[0][2] + result1['diabetes'] * params[0][3] + result1['ejection_fraction'] * params[0][4] + result1['high_blood_pressure'] * params[0][5] + result1['platelets'] * params[0][6] + result1['serum_creatinine'] * params[0][7] + result1['serum_sodium'] * params[0][8] + result1['sex'] * params[0][9] + result1['smoking'] * params[0][10] 
 
 import scipy.stats as si
 def normsdist(z):

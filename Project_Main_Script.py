@@ -366,12 +366,9 @@ marge_effect = result_full.get_margeff(at='mean', method='dydx')
 
 ####### Testing the model on new_df ######
 
-params = pd.DataFrame(probit_model.fit().params, columns={'coef'},)
+params = pd.DataFrame(probit_model.fit().params,)
 
-params = np.array(params)
-params = params.astype('int64')
-
-pourcentage = new_df['Age'] * params['coef'][0] + new_df['Anaemia'] * params['coef'][1] + new_df['CPK'] * params['coef'][2] + new_df['Diabetes'] * params['coef'][3] + new_df['Percentage of ejection fraction'] * params['coef'][4] + new_df['High blood pressure'] * params['coef'][5] + new_df['Level of platelets'] * params['coef'][6] + new_df['Level of creatinine'] * params['coef'][7] + new_df['Level of sodium'] * params['coef'][8] + new_df['Sex'] * params['coef'][9] + new_df['Smoking'] * params['coef'][10] 
+pourcentage = new_df['Age'] * params[0][0] + new_df['Anaemia'] * params[0][1] + new_df['CPK'] * params[0][2] + new_df['Diabetes'] * params[0][3] + new_df['Percentage of ejection fraction'] * params[0][4] + new_df['High blood pressure'] * params[0][5] + new_df['Level of platelets'] * params[0][6] + new_df['Level of creatinine'] * params[0][7] + new_df['Level of sodium'] * params[0][8] + new_df['Sex'] * params[0][9] + new_df['Smoking'] * params[0][10] 
 pourcentage = pd.DataFrame(pourcentage)
 
 ####### Evaluation of probit model
